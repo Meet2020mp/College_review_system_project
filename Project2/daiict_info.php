@@ -1,0 +1,186 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
+    header("location: login.php");
+    $_session['loggedin']=false;
+    $_SESSION['username']="User";
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome   <?php echo $_SESSION['username'];?></title>
+    
+    <link rel="stylesheet" href="daiict_info.css">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<body>
+    <?php include 'header.php'; ?> 
+    <div class="img">
+    <div class="name"><img src="photos/daiict_logo.png" alt="IIT" style=""><h1>DHIRUBHAI AMBANI INSTITUTE OF INFORMATION AND COMMUNICATION </h1><h1>TECHNOLOGY - [DA-IICT], GANDHI NAGAR</h1></div>
+    </div>
+   <div class="placement">
+   <div class="placement1"><h1>[DA-IICT], GANDHINAGAR PLACEMENTS</h1></div>
+   <hr><hr><hr>
+   <div >
+   <table id="placement2">
+ <thead>
+ <tr>
+    <th>YEAR</th>
+    <th>PLACEMENTS(%)</th>
+    
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+    <td width="490">2020</td>
+    <td width="490">95%</td>
+    
+  </tr>
+  <tr>
+    <td width="490">2019</td>
+    <td width="490">90%</td>
+    
+  </tr>
+  <tr>
+    <td width="490">2018</td>
+    <td width="490">91%</td>
+    
+  </tr>
+  <tr>
+    <td width="490">2017</td>
+    <td width="490">89%</td>
+    <!-- 50, 127, 168 -->
+    <!-- 123, 50, 168 -->
+    <!-- 176, 40, 160 -->
+    <!-- 117, 117, 74 -->
+    <!-- 74, 114, 117 -->
+    <!-- 74, 96, 117 -->
+    <!-- 117, 74, 74 -->
+    <!-- 242, 180, 179 -->
+    <!-- 242, 179, 179 -->
+    <!-- 242, 104, 104 -->
+  </tr>
+  </tbody>
+</table>
+   </div>
+   </div>
+
+   <div class="course">
+   <div class="course1"><h1>[DA-IICT], GANDHINAGAR FEES</h1></div>
+   <hr><hr><hr>
+   <div >
+   <table id="course2">
+ <thead>
+ <tr>
+    <th>COURSE</th>
+    <th>FEES</th>
+    
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+    <td width="490">M.Tech</td>
+    <td width="490">₹1.54 Lakhs (1st Year Fees)</td>
+    
+  </tr>
+  <tr>
+  <td width="490">B.Tech</td>
+    <td width="490">₹1.97 Lakhs (1st Year Fees)</td>
+    
+  </tr>
+  <tr>
+  <td width="490">B.Tech{Hons}</td>
+    <td width="490">₹1.97 Lakhs (1st Year Fees)</td>
+    
+  </tr>
+  <tr>
+  <td width="490">Ph.D</td>
+    <td width="490">₹65,000 (1st Year Fees)</td>
+    
+  </tr>
+  <tr>
+  <td width="490">M.Sc</td>
+    <td width="490">₹3.75 Lakhs (1st Year Fees)</td>
+    
+  </tr>
+  <tr>
+  <td width="490">M.Des</td>
+    <td width="490">₹1.55 Lakhs (1st Year Fees)</td>
+    
+  </tr>
+  </tbody>
+</table>
+   </div>
+   </div>
+
+   <div class="course">
+   <div class="course1"><h1> [DA-IICT], GANDHINAGAR ELIGIBILITY</h1></div>
+   <hr><hr><hr>
+   <div >
+   <table id="course2">
+ <thead>
+ <tr>
+    <th>COURSE</th>
+    <th>ELIGIBILITY</th>
+    
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+    <td width="490">M.Tech</td>
+    <td width="490">Pass in Graduation</td>
+    
+  </tr>
+  <tr>
+  <td width="490">B.Tech</td>
+    <td width="490">10+2 </td>
+    
+  </tr>
+  <tr>
+  <td width="490">B.Tech{Hons}</td>
+    <td width="490">10+2</td>
+    
+  </tr>
+  <tr>
+  <td width="490">Ph.D</td>
+    <td width="490">Post Graduation</td>
+    
+  </tr>
+  <tr>
+  <td width="490">M.Sc</td>
+    <td width="490">Graduation</td>
+    
+  </tr>
+  <tr>
+  <td width="490">M.Des</td>
+    <td width="490">Graduation with 55% + CEED</td>
+    
+  </tr>
+  </tbody>
+</table>
+   </div>
+   </div>
+   <a href="https://www.daiict.ac.in/" target="_blank"><div class="form"><button class="button">For More Information</button></div></a> 
+   <?php
+   require_once "dbcon.php";
+   ?>
+    <?php
+   $name="Dhirubhai Ambani Institute of Information and Communication Technology";
+   $sql = "SELECT `college_id` FROM `colleges` WHERE college_name='$name'";
+   $result = mysqli_query($conn,$sql);
+    if( $row = mysqli_fetch_assoc($result)){
+     $id=$row['college_id'];
+     echo '<a href="threadlist.php?catid='.$id.'"><div class="form" style="margin-bottom: 30px;"><button class="button">Give Review for '.$name.'</button></div></a>';
+     }
+   ?>   
+</body>
+</html>
